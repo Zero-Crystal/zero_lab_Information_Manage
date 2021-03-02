@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LabManage</string>
+
+    <string name="sign_top_name">北林实验室信息管理系统</string>
+
+    <string name="sign_top_hint">线上预约、实名登记</string>
+
+    <string name="sign_account_number">账号:</string>
+
+    <string name="sign_account_password">密码:</string>
+
+    <string name="sign_account_hint_number">请输入你的学号</string>
+
+    <string name="sign_account_hint_password">请输入你的密码</string>
+
+    <string name="sign_status">身份:</string>
+
+    <string name="sign_button">登陆</string>
+</resources>
