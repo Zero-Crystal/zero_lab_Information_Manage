@@ -10,4 +10,5 @@
 
     <color name="theme_color_cyan">#BBE0ED</color>
     <color name="btn_color_blue">#92B7F9</color>
+    <color name="theme_color_blue">#70C0DB</color>
 </resources>
