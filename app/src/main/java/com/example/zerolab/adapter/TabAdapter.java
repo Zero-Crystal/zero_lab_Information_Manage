@@ -10,7 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import java.util.List;
 
 /**
- * @author yating
+ * @author zero
  */
 public class TabAdapter extends FragmentStateAdapter {
     private List<Fragment> fragmentList;

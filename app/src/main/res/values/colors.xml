@@ -11,4 +11,7 @@
     <color name="theme_color_cyan">#BBE0ED</color>
     <color name="btn_color_blue">#92B7F9</color>
     <color name="theme_color_blue">#70C0DB</color>
+    <color name="line_color_gray">#C0C0C0</color>
+    <color name="card_color_bule">#70C0DB</color>
+    <color name="text_color_black">#444444</color>
 </resources>

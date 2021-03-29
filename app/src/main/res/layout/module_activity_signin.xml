@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".activity.SignInActivity"
     android:background="@color/theme_color_cyan"
     android:paddingTop="50dp">
 
@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/sign_account_hint_number"
                 android:inputType="number"
-                android:background="null"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
@@ -62,7 +61,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/sign_account_hint_password"
                 android:inputType="textPassword"
-                android:background="null"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
@@ -84,7 +82,8 @@
                 android:id="@+id/sp_sign_identify"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:spinnerMode="dropdown"/>
         </LinearLayout>
 
         <Button

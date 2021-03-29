@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
-    android:layout_marginTop="7.5dp">
+    android:layout_marginTop="7.5dp"
+    android:layout_marginBottom="7.5dp"
+    android:id="@+id/lab_cardView">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +24,12 @@
             android:textSize="23dp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
-        <view
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:background="@color/line_color_gray"/>
 
         <TextView
             android:id="@+id/tv_item_introductionTitle"
@@ -39,10 +44,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/student_item_index_introduction"/>
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:background="@color/line_color_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,23 +56,23 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
             <TextView
-                android:id="@+id/tv_item_address_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="实验室地址"
                 style="@style/tv_table_labIntroduction"/>
             <TextView
-                android:id="@+id/tv_item_address_2"
+                android:id="@+id/tv_item_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="基础楼303"
                 style="@style/tv_table_labIntroduction"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:background="@color/line_color_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,23 +80,23 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
             <TextView
-                android:id="@+id/tv_item_openTime_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="开放时间"
                 style="@style/tv_table_labIntroduction"/>
             <TextView
-                android:id="@+id/tv_item_openTime_2"
+                android:id="@+id/tv_item_openTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="13:00 - 14:00"
                 style="@style/tv_table_labIntroduction"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:background="@color/line_color_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,23 +104,23 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
             <TextView
-                android:id="@+id/tv_item_equip_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="所含设备"
                 style="@style/tv_table_labIntroduction"/>
             <TextView
-                android:id="@+id/tv_item_equip_2"
+                android:id="@+id/tv_item_equip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="光学显微镜、光学显微镜"
                 style="@style/tv_table_labIntroduction"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:background="@color/line_color_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,19 +128,28 @@
             android:orientation="horizontal"
             android:layout_marginTop="15dp">
             <TextView
-                android:id="@+id/tv_item_reserve_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="预约情况"
                 style="@style/tv_table_labIntroduction"/>
             <TextView
-                android:id="@+id/tv_item_reserve_2"
+                android:id="@+id/tv_item_reserve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="已预约"
                 style="@style/tv_table_labIntroduction"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_item_submit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/btn_sign_in"
+            android:text="预约"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

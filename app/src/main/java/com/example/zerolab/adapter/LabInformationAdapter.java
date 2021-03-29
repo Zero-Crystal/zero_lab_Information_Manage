@@ -1,17 +1,18 @@
 package com.example.zerolab.adapter;
 
-import androidx.annotation.NonNull;
+import android.view.View;
+
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.zerolab.R;
 import com.example.zerolab.bean.LabBean;
 
 import java.util.List;
 
 /**
- * @author yating
+ * @author zero
  */
 public class LabInformationAdapter extends BaseQuickAdapter<LabBean,BaseViewHolder> {
 
@@ -21,6 +22,12 @@ public class LabInformationAdapter extends BaseQuickAdapter<LabBean,BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, LabBean item) {
-
+        helper.setText(R.id.tv_item_title,item.getLabName());
+        helper.setText(R.id.tv_item_introduction,item.getLabIntroduce());
+        helper.setText(R.id.tv_item_address,item.getLabAddress());
+        helper.setText(R.id.tv_item_openTime,item.getLabOpenTime());
+        helper.setText(R.id.tv_item_equip,item.getLabEquip());
+        helper.setText(R.id.tv_item_reserve,item.getLabReserve());
+        helper.addOnClickListener(R.id.btn_item_submit);
     }
 }

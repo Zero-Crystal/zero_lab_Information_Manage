@@ -19,7 +19,18 @@
 
     <string name="student_main_title">北林实验室预约信息一览表</string>
 
-    <string name="student_item_index_introduction">测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内</string>
+    <string name="student_item_index_introduction">测试内容测试内容测试内容测试内容测试内容测试内容
+        测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内</string>
 
+    <string name="lab_reserve_rules">实验室预约规则\n
+        1.XXXXXXXXXXXXXXXXXXXXXXXXX\n 2.XXXXXXXXXXXXXXXXXXXXXXXX\n
+        3.XXXXXXXXXXXXXXXXXXXXXX</string>
+
+    <string name="lab_reserve_rules_agree">我已阅读并同意预约规则</string>
+
+    <string-array name="signIn_status_choose">
+        <item>学生</item>
+        <item>实验员</item>
+    </string-array>
 
 </resources>

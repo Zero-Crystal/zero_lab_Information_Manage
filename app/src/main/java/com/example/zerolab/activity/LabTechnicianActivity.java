@@ -7,7 +7,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TableLayout;
 
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TabAdapter;
@@ -24,7 +23,7 @@ import java.util.List;
 /**
  * @author zero
  */
-public class StudentActivity extends AppCompatActivity {
+public class LabTechnicianActivity extends AppCompatActivity {
     private TabLayout tl_student;
     private ViewPager2 vp_student;
     private List<String> title = new ArrayList<>();
@@ -33,7 +32,8 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.module_activity_student);
+        setContentView(R.layout.module_activity_technician);
+
         initDate();
         //实例化适配器
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager(), getLifecycle(), fragmentList);
@@ -46,6 +46,7 @@ public class StudentActivity extends AppCompatActivity {
                 tab.setText(title.get(position));
             }
         }).attach();
+
     }
 
     public void initDate() {
@@ -54,13 +55,13 @@ public class StudentActivity extends AppCompatActivity {
 
         title.add("首页");
         title.add("查询");
-        title.add("预约");
-        title.add("预约结果");
+        title.add("添加");
+        title.add("预约审核");
 
         fragmentList.add(new IndexFragment());
         fragmentList.add(new QueryFragment());
-        fragmentList.add(new ReserveFragment());
         fragmentList.add(new Fragment());
-        Log.d(Constant.TAG_D, "initDate: ----------------> fagmentList size "+fragmentList.size());
+        fragmentList.add(new Fragment());
+        Log.d(Constant.TAG_D, "initDate: ----------------> fragmentList size "+fragmentList.size());
     }
 }
