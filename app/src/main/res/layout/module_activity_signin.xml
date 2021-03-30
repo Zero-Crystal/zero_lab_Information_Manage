@@ -20,64 +20,66 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:background="@drawable/editor_border_white"
             android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/sign_account_number"
-                android:textSize="20sp"
-                android:padding="10dp"/>
+            android:layout_marginRight="3dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/icon_me"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"/>
             <EditText
                 android:id="@+id/et_sign_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/sign_account_hint_number"
                 android:inputType="number"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:background="#00ffffff"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:background="@drawable/editor_border_white"
             android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/sign_account_password"
-                android:textSize="20sp"
-                android:padding="10dp"/>
+            android:layout_marginRight="3dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/icon_hide"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"/>
             <EditText
                 android:id="@+id/et_sign_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/sign_account_hint_password"
                 android:inputType="textPassword"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:background="#00ffffff"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:background="@drawable/editor_border_white"
             android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/sign_status"
-                android:textSize="20sp"
-                android:padding="10dp"/>
+            android:layout_marginRight="3dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/icon_user"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"/>
             <Spinner
                 android:id="@+id/sp_sign_identify"
                 android:layout_width="match_parent"
