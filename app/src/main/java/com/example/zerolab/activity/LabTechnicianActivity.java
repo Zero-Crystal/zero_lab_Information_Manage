@@ -10,9 +10,8 @@ import android.util.Log;
 
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TabAdapter;
-import com.example.zerolab.fragment.IndexFragment;
 import com.example.zerolab.fragment.QueryFragment;
-import com.example.zerolab.fragment.ReserveFragment;
+import com.example.zerolab.fragment.technician.TechnicianIndexFragment;
 import com.example.zerolab.utils.Constant;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -58,7 +57,7 @@ public class LabTechnicianActivity extends AppCompatActivity {
         title.add("添加");
         title.add("预约审核");
 
-        fragmentList.add(new IndexFragment());
+        fragmentList.add(new TechnicianIndexFragment());
         fragmentList.add(new QueryFragment());
         fragmentList.add(new Fragment());
         fragmentList.add(new Fragment());

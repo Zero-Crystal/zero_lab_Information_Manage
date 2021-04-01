@@ -6,9 +6,10 @@
     android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_labInformation_student"
+        android:id="@+id/rv_reserveResult_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:paddingTop="7.5dp"
+        android:paddingBottom="7.5dp"/>
 
 </LinearLayout>

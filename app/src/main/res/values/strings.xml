@@ -34,4 +34,6 @@
         <item>实验员</item>
     </string-array>
 
+    <string name="technician_lab_rules_agree">我已阅读并同意登记规则</string>
+
 </resources>

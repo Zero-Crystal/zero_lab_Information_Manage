@@ -1,10 +1,11 @@
-package com.example.zerolab.fragment;
+package com.example.zerolab.fragment.student;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.LabInformationAdapter;
 import com.example.zerolab.bean.LabBean;
@@ -20,6 +22,9 @@ import com.example.zerolab.utils.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zero
+ */
 public class IndexFragment extends Fragment {
     private RecyclerView labRecycler;
     private List<LabBean> labBeanList=new ArrayList<>();
@@ -47,6 +52,17 @@ public class IndexFragment extends Fragment {
         labRecycler.setLayoutManager(layoutManager);
         LabInformationAdapter labAdapter=new LabInformationAdapter(R.layout.module_recycler_item_lab,labBeanList);
         labRecycler.setAdapter(labAdapter);
+
+        //RecyclerView内部按钮点击事件：获取该item预约信息，并跳转预约页面
+        labAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                //Click Test
+                LabBean labBean= (LabBean) adapter.getItem(position);
+                Toast.makeText(view.getContext(),labBean.getLabName()+" 地址："+labBean.getLabAddress()+" "+position,Toast.LENGTH_LONG).show();
+                //TODO
+            }
+        });
 
         return view;
     }

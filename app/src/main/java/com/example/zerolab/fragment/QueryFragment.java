@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,6 +63,8 @@ public class QueryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //点击查询按钮，将查询到的实验室信息显示在下方卡片中
+                Toast.makeText(view.getContext(),"您点击了查询按钮，为您查询该实验室",Toast.LENGTH_SHORT);
+                cvLabCard.setVisibility(View.VISIBLE);
             }
         });
 

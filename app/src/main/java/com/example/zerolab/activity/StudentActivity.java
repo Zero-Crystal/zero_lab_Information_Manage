@@ -7,13 +7,13 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TableLayout;
 
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TabAdapter;
-import com.example.zerolab.fragment.IndexFragment;
+import com.example.zerolab.fragment.student.IndexFragment;
 import com.example.zerolab.fragment.QueryFragment;
-import com.example.zerolab.fragment.ReserveFragment;
+import com.example.zerolab.fragment.student.ReserveFragment;
+import com.example.zerolab.fragment.student.ReserveResultFragment;
 import com.example.zerolab.utils.Constant;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -60,7 +60,7 @@ public class StudentActivity extends AppCompatActivity {
         fragmentList.add(new IndexFragment());
         fragmentList.add(new QueryFragment());
         fragmentList.add(new ReserveFragment());
-        fragmentList.add(new Fragment());
+        fragmentList.add(new ReserveResultFragment());
         Log.d(Constant.TAG_D, "initDate: ----------------> fagmentList size "+fragmentList.size());
     }
 }
