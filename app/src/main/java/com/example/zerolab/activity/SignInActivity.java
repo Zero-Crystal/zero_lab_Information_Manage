@@ -1,7 +1,5 @@
 package com.example.zerolab.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.zerolab.R;
-import com.example.zerolab.adapter.LabInformationAdapter;
 import com.example.zerolab.utils.Constant;
 import com.example.zerolab.utils.SpUtils;
 
@@ -29,6 +28,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class SignInActivity extends AppCompatActivity {
     private List<String> statusList = new ArrayList<>();
     private Spinner spStatus;
+
 
     private EditText etNumber;
     private EditText etPassword;

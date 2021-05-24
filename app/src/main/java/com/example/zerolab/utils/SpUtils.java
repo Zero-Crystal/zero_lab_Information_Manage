@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
+ * SharedPreferences存取方法
+ *
  * @author zero
  */
 public class SpUtils {

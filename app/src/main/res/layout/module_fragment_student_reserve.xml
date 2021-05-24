@@ -38,10 +38,11 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp">
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_lab_name"
@@ -56,14 +57,10 @@
                     android:id="@+id/sp_lab_choose"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_below="@id/tv_lab_name"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="43dp"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/sp_lab_choose" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -191,10 +188,15 @@
                     android:text="开始时间"
                     android:textSize="17dp"
                     android:textColor="@color/black"/>
-                <Spinner
-                    android:id="@+id/sp_students_opentime"
+                <Button
+                    android:id="@+id/btn_students_open_time"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="请选择实验开始时间"
+                    android:textSize="17dp"
+                    android:textColor="@color/text_color_gray"
+                    android:background="#ffffffff"/>
             </LinearLayout>
 
             <LinearLayout
@@ -211,10 +213,15 @@
                     android:text="结束时间"
                     android:textSize="17dp"
                     android:textColor="@color/black"/>
-                <Spinner
-                    android:id="@+id/sp_students_endtime"
+                <Button
+                    android:id="@+id/btn_students_end_time"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"/>
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="请选择实验结束时间"
+                    android:textSize="17dp"
+                    android:textColor="@color/text_color_gray"
+                    android:background="#ffffffff"/>
             </LinearLayout>
 
             <LinearLayout

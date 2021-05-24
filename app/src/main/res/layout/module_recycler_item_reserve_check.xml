@@ -97,7 +97,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="实验室人数"
+                android:text="实验人数"
                 style="@style/tv_table_labIntroduction"/>
             <TextView
                 android:id="@+id/tv_item_student_sum"

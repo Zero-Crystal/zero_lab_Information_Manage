@@ -5,14 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.module.mvp.MvpFragment;
+import com.example.zerolab.Contract.StudentIndexContract;
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TechnicianLabAdapter;
 import com.example.zerolab.bean.LabBean;
@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author zero
  */
-public class TechnicianIndexFragment extends Fragment {
+public class TechnicianIndexFragment extends MvpFragment<StudentIndexContract.StudentIndexPresenter> implements StudentIndexContract.IStudentIndex {
     private RecyclerView labRecycler;
     private List<LabBean> labBeanList=new ArrayList<>();
 
@@ -32,8 +32,6 @@ public class TechnicianIndexFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.module_fragment_technician_index,container,false);
-
-        initList();
 
         labRecycler=view.findViewById(R.id.rv_labInformation_student);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
@@ -43,6 +41,16 @@ public class TechnicianIndexFragment extends Fragment {
         labRecycler.setAdapter(labAdapter);
 
         return view;
+    }
+
+    @Override
+    protected StudentIndexContract.StudentIndexPresenter createPresent() {
+        return new StudentIndexContract.StudentIndexPresenter();
+    }
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        initList();
     }
 
     private void initList() {

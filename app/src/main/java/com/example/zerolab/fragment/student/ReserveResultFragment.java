@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import java.util.List;
 public class ReserveResultFragment extends Fragment {
     private RecyclerView resultRecycler;
     private List<ReserveResultBean> resultBeanList = new ArrayList<>();
+    private final int btnCancel=R.id.btn_item_cancel;
 
     @Nullable
     @Override
@@ -45,7 +47,13 @@ public class ReserveResultFragment extends Fragment {
                 //获取item对象
                 ReserveResultBean resultBean= (ReserveResultBean) adapter.getItem(position);
                 //TODO
-
+                switch (view.getId()){
+                    case btnCancel:
+                        Toast.makeText(getContext(),"取消预约",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 

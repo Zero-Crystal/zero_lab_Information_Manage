@@ -3,12 +3,14 @@
     package="com.example.zerolab">
 
     <application
+        android:name=".LabManageApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LabManage">
+        android:theme="@style/Theme.LabManage"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity android:name=".activity.LabTechnicianActivity"/>
         <activity android:name=".activity.StudentActivity"/>
         <activity android:name=".activity.SignInActivity">

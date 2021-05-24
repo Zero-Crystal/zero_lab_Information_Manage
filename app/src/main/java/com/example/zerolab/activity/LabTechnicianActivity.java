@@ -1,16 +1,18 @@
 package com.example.zerolab.activity;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TabAdapter;
 import com.example.zerolab.fragment.QueryFragment;
+import com.example.zerolab.fragment.technician.LabAddFragment;
+import com.example.zerolab.fragment.technician.ReserveCheckFragment;
 import com.example.zerolab.fragment.technician.TechnicianIndexFragment;
 import com.example.zerolab.utils.Constant;
 import com.google.android.material.tabs.TabLayout;
@@ -59,8 +61,8 @@ public class LabTechnicianActivity extends AppCompatActivity {
 
         fragmentList.add(new TechnicianIndexFragment());
         fragmentList.add(new QueryFragment());
-        fragmentList.add(new Fragment());
-        fragmentList.add(new Fragment());
+        fragmentList.add(new LabAddFragment());
+        fragmentList.add(new ReserveCheckFragment());
         Log.d(Constant.TAG_D, "initDate: ----------------> fragmentList size "+fragmentList.size());
     }
 }
