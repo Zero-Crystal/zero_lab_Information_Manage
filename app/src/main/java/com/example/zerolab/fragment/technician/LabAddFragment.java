@@ -16,15 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.module.mvp.MvpFragment;
-import com.example.zerolab.Contract.StudentIndexContract;
+import com.example.zerolab.Contract.LabAddContract;
 import com.example.zerolab.R;
+import com.example.zerolab.bean.LabInsertResponseBean;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import retrofit2.Response;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * @author DELL
  */
-public class LabAddFragment extends MvpFragment<StudentIndexContract.StudentIndexPresenter> implements StudentIndexContract.IStudentIndex {
+public class LabAddFragment extends MvpFragment<LabAddContract.LabAddPresenter> implements LabAddContract.ILabAddView {
     private EditText etLabNum;
     private EditText etLabAddress;
     private EditText etLabName;
@@ -37,8 +44,8 @@ public class LabAddFragment extends MvpFragment<StudentIndexContract.StudentInde
     private Button btnLabEndTime;
 
     @Override
-    protected StudentIndexContract.StudentIndexPresenter createPresent() {
-        return new StudentIndexContract.StudentIndexPresenter();
+    protected LabAddContract.LabAddPresenter createPresent() {
+        return new LabAddContract.LabAddPresenter();
     }
 
     @Override
@@ -51,12 +58,32 @@ public class LabAddFragment extends MvpFragment<StudentIndexContract.StudentInde
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.module_fragment_technician_lab_add, container, false);
         initView(view);
-
-        click(view);
         return view;
     }
 
-    private void click(View view) {
+    private void initView(View view) {
+        etLabNum = view.findViewById(R.id.et_lab_num);
+        etLabAddress = view.findViewById(R.id.et_lab_address);
+        etLabName = view.findViewById(R.id.et_lab_name);
+        etLabIntroduce = view.findViewById(R.id.et_lab_introduce);
+        etLabEquip = view.findViewById(R.id.et_lab_equip);
+        etLabSum = view.findViewById(R.id.et_lab_sum);
+        cbLabChecked = view.findViewById(R.id.cb_lab_isChecked);
+        btnLabOpenTime = view.findViewById(R.id.btn_lab_open_time);
+        btnLabEndTime = view.findViewById(R.id.btn_lab_end_time);
+        btTechnicianSubmit = view.findViewById(R.id.btn_technician_submit);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        click();
+    }
+
+    private void click() {
+        List<String> openTime = new ArrayList<>();
+        List<String> endTime = new ArrayList<>();
+
         btnLabOpenTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +92,8 @@ public class LabAddFragment extends MvpFragment<StudentIndexContract.StudentInde
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         //TODO
+                        openTime.add(String.valueOf(hourOfDay));
+                        openTime.add(String.valueOf(minute));
                         btnLabOpenTime.setText(hourOfDay + " : " + minute);
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
@@ -80,10 +109,21 @@ public class LabAddFragment extends MvpFragment<StudentIndexContract.StudentInde
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         //TODO
+                        endTime.add(String.valueOf(hourOfDay));
+                        endTime.add(String.valueOf(minute));
                         btnLabEndTime.setText(hourOfDay + " : " + minute);
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
+            }
+        });
+
+        cbLabChecked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbLabChecked.isChecked()) {
+                    btTechnicianSubmit.setEnabled(true);
+                }
             }
         });
 
@@ -92,21 +132,36 @@ public class LabAddFragment extends MvpFragment<StudentIndexContract.StudentInde
             @Override
             public void onClick(View v) {
                 //TODO
-                Toast.makeText(view.getContext(),"您点击了提交按钮",Toast.LENGTH_SHORT).show();
+                String labTime = null;
+                String labNum = etLabNum.getText().toString();
+                String labName = etLabName.getText().toString();
+                String labAddress = etLabAddress.getText().toString();
+                String labIntroduce = etLabIntroduce.getText().toString();
+                String labSum = etLabSum.getText().toString();
+                String labEquip = etLabEquip.getText().toString();
+                if (labNum.isEmpty() || labName.isEmpty() || labAddress.isEmpty() || labIntroduce.isEmpty() || labSum.isEmpty() || labEquip.isEmpty()){
+                    Toast.makeText(getContext(), "请您完整填写实验室信息表！", Toast.LENGTH_SHORT).show();
+                }else{
+                    if (openTime.size() > 0 && endTime.size() > 0) {
+                        labTime = openTime.get(0) + ":" + openTime.get(1) + " - " + endTime.get(0) + ":" + endTime.get(1);
+                    } else {
+                        Toast.makeText(getContext(), "请您选择实验室开放时间！", Toast.LENGTH_SHORT).show();
+                    }
+                    mPresent.insetLabInformation(labNum, labName, labAddress, labIntroduce, labSum, labEquip, labTime);
+                }
             }
         });
     }
 
-    private void initView(View view) {
-        etLabNum = view.findViewById(R.id.et_lab_num);
-        etLabAddress = view.findViewById(R.id.et_lab_address);
-        etLabName = view.findViewById(R.id.et_lab_name);
-        etLabIntroduce = view.findViewById(R.id.et_lab_introduce);
-        etLabEquip = view.findViewById(R.id.et_lab_equip);
-        etLabSum = view.findViewById(R.id.et_lab_sum);
-        cbLabChecked = view.findViewById(R.id.cb_students_isChecked);
-        btnLabOpenTime=view.findViewById(R.id.btn_lab_open_time);
-        btnLabEndTime=view.findViewById(R.id.btn_lab_end_time);
-        btTechnicianSubmit = view.findViewById(R.id.btn_technician_submit);
+    @Override
+    public void getLabInsertResult(Response<LabInsertResponseBean> response) {
+        if(response.body().getLabParams()!=null){
+            Toast.makeText(getContext(), "恭喜您提交成功！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getFailed() {
+        Toast.makeText(getContext(), "网络错误", LENGTH_SHORT).show();
     }
 }

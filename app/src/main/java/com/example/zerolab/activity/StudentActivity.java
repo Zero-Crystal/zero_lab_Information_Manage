@@ -1,20 +1,20 @@
 package com.example.zerolab.activity;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TabAdapter;
+import com.example.zerolab.bean.LabInformationBean;
 import com.example.zerolab.fragment.student.IndexFragment;
-import com.example.zerolab.fragment.QueryFragment;
 import com.example.zerolab.fragment.student.ReserveFragment;
 import com.example.zerolab.fragment.student.ReserveResultFragment;
-import com.example.zerolab.utils.Constant;
+import com.example.zerolab.fragment.student.StudentQueryFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -29,6 +29,9 @@ public class StudentActivity extends AppCompatActivity {
     private ViewPager2 vp_student;
     private List<String> title = new ArrayList<>();
     private List<Fragment> fragmentList = new ArrayList<>();
+
+    private FragmentJump fragmentJump;
+    private LabInformationBean.LabInformation.Labs labInformationBean=new LabInformationBean.LabInformation.Labs();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +61,35 @@ public class StudentActivity extends AppCompatActivity {
         title.add("预约结果");
 
         fragmentList.add(new IndexFragment());
-        fragmentList.add(new QueryFragment());
+        fragmentList.add(new StudentQueryFragment());
         fragmentList.add(new ReserveFragment());
         fragmentList.add(new ReserveResultFragment());
-        Log.d(Constant.TAG_D, "initDate: ----------------> fagmentList size "+fragmentList.size());
+        Log.d("TAG_ZERO", "initDate: ----------------> fagmentList size " + fragmentList.size());
+    }
+
+    public void setFragment(FragmentJump fragment) {
+        this.fragmentJump = fragment;
+    }
+
+    public void forSkip() {
+        if (fragmentJump != null) {
+            fragmentJump.goToFragment(vp_student);
+        }
+    }
+
+    public interface FragmentJump {
+        /**
+         * fragment跳转回调
+         * @param viewPager
+         * */
+        void goToFragment(ViewPager2 viewPager);
+    }
+
+    public LabInformationBean.LabInformation.Labs getLabInformationBean() {
+        return labInformationBean;
+    }
+
+    public void setLabInformationBean(LabInformationBean.LabInformation.Labs labInformationBean) {
+        this.labInformationBean = labInformationBean;
     }
 }

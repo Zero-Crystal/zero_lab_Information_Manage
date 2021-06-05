@@ -38,5 +38,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30';
-    implementation project(':module')//引入模块  然后将项目里的依赖移动到模块的build.gradle里
+    //引入模块  然后将项目里的依赖移动到模块的build.gradle里
+    implementation project(':module')
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-21'
 }

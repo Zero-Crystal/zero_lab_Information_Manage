@@ -12,20 +12,18 @@ import java.util.List;
 /**
  * @author zero
  */
-public class ReserveResultAdapter extends BaseQuickAdapter<ReserveResultBean, BaseViewHolder> {
+public class ReserveResultAdapter extends BaseQuickAdapter<ReserveResultBean.Results.Result, BaseViewHolder> {
 
-    public ReserveResultAdapter(int layoutResId, @Nullable List<ReserveResultBean> data) {
+    public ReserveResultAdapter(int layoutResId, @Nullable List<ReserveResultBean.Results.Result> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ReserveResultBean item) {
+    protected void convert(BaseViewHolder helper, ReserveResultBean.Results.Result item) {
         helper.setText(R.id.tv_item_title,item.getLabName())
                 .setText(R.id.tv_item_experimentName,item.getExperimentName())
-                .setText(R.id.tv_item_startTime,item.getStartTime())
-                .setText(R.id.tv_item_endTime,item.getEndTime())
-                .setText(R.id.tv_item_reserveResult,item.getReserveResult())
-                .setText(R.id.tv_item_reserveTeacher,item.getReserveTeacher());
-        helper.addOnClickListener(R.id.btn_item_cancel);
+                .setText(R.id.tv_item_startTime,item.getExperimentTime())
+                .setText(R.id.tv_item_reserveResult,item.getReserveStatus())
+                .setText(R.id.tv_item_reserveTeacher,item.getCheckTeacher());
     }
 }

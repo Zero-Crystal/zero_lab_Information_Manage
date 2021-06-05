@@ -1,61 +1,109 @@
 package com.example.zerolab.bean;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 /**
  * @author DELL
  */
 public class ReserveCheckBean {
-    private String studentName;
-    private String labName;
-    private String experimentName;
-    private String experimentSum;
-    private String experimentStartTime;
-    private String experimentEndTime;
 
-    public String getStudentName() {
-        return studentName;
+    @SerializedName("Results")
+    private Results results;
+
+    public Results getResults() {
+        return results;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setResults(Results results) {
+        this.results = results;
     }
 
-    public String getLabName() {
-        return labName;
-    }
+    public static class Results {
+        private List<Results.ResultList> resultList;
 
-    public void setLabName(String labName) {
-        this.labName = labName;
-    }
+        public List<Results.ResultList> getResultList() {
+            return resultList;
+        }
 
-    public String getExperimentName() {
-        return experimentName;
-    }
+        public void setResultList(List<Results.ResultList> resultList) {
+            this.resultList = resultList;
+        }
 
-    public void setExperimentName(String experimentName) {
-        this.experimentName = experimentName;
-    }
+        public static class ResultList {
+            private String stuName;
+            private String stuNum;
+            private String labName;
+            private String experimentName;
+            private String stuSum;
+            private String experimentTime;
+            private String reserveStatus;
+            private String checkTeacher;
 
-    public String getExperimentSum() {
-        return experimentSum;
-    }
+            public String getStuName() {
+                return stuName;
+            }
 
-    public void setExperimentSum(String experimentSum) {
-        this.experimentSum = experimentSum;
-    }
+            public void setStuName(String stuName) {
+                this.stuName = stuName;
+            }
 
-    public String getExperimentStartTime() {
-        return experimentStartTime;
-    }
+            public String getStuNum() {
+                return stuNum;
+            }
 
-    public void setExperimentStartTime(String experimentStartTime) {
-        this.experimentStartTime = experimentStartTime;
-    }
+            public void setStuNum(String stuNum) {
+                this.stuNum = stuNum;
+            }
 
-    public String getExperimentEndTime() {
-        return experimentEndTime;
-    }
+            public String getLabName() {
+                return labName;
+            }
 
-    public void setExperimentEndTime(String experimentEndTime) {
-        this.experimentEndTime = experimentEndTime;
+            public void setLabName(String labName) {
+                this.labName = labName;
+            }
+
+            public String getExperimentName() {
+                return experimentName;
+            }
+
+            public void setExperimentName(String experimentName) {
+                this.experimentName = experimentName;
+            }
+
+            public String getStuSum() {
+                return stuSum;
+            }
+
+            public void setStuSum(String stuSum) {
+                this.stuSum = stuSum;
+            }
+
+            public String getExperimentTime() {
+                return experimentTime;
+            }
+
+            public void setExperimentTime(String experimentTime) {
+                this.experimentTime = experimentTime;
+            }
+
+            public String getReserveStatus() {
+                return reserveStatus;
+            }
+
+            public void setReserveStatus(String reserveStatus) {
+                this.reserveStatus = reserveStatus;
+            }
+
+            public String getCheckTeacher() {
+                return checkTeacher;
+            }
+
+            public void setCheckTeacher(String checkTeacher) {
+                this.checkTeacher = checkTeacher;
+            }
+        }
     }
 }

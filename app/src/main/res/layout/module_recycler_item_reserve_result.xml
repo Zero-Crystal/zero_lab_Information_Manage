@@ -61,37 +61,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="开始时间"
+                android:text="预约时间"
                 style="@style/tv_table_labIntroduction"/>
             <TextView
                 android:id="@+id/tv_item_startTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="13:00"
-                style="@style/tv_table_labIntroduction"
-                android:layout_marginLeft="15dp"/>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/line_color_gray"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="结束时间"
-                style="@style/tv_table_labIntroduction"/>
-            <TextView
-                android:id="@+id/tv_item_endTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="14:00"
                 style="@style/tv_table_labIntroduction"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
@@ -143,16 +119,6 @@
                 style="@style/tv_table_labIntroduction"
                 android:layout_marginLeft="15dp"/>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_item_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/btn_sign_in"
-            android:text="取消"
-            android:textColor="@color/white"
-            android:textSize="20sp"/>
 
     </LinearLayout>
 

@@ -6,70 +6,80 @@ package com.example.zerolab.bean;
  * @author zero
  * */
 public class LabBean {
-    private String labName;
-    private String labIntroduce;
-    private String labAddress;
-    private String labOpenTime;
-    private String labEquip;
-    private String labReserve;
 
-    public LabBean() {
+    private LabParams labParams;
+
+    public LabParams getLabParams() {
+        return labParams;
     }
 
-    public LabBean(String labName, String labIntroduce, String labAddress, String labOpenTime, String labEquip, String labReserve) {
-        this.labName = labName;
-        this.labIntroduce = labIntroduce;
-        this.labAddress = labAddress;
-        this.labOpenTime = labOpenTime;
-        this.labEquip = labEquip;
-        this.labReserve = labReserve;
+    public void setLabParams(LabParams labParams) {
+        this.labParams = labParams;
     }
 
-    public String getLabName() {
-        return labName;
-    }
+    public static class LabParams {
+        private String labIntroduce;
+        private String result;
+        private String labOpenTime;
+        private String labEquip;
+        private String labReserve;
+        private String labName;
+        private String labAddress;
 
-    public void setLabName(String labName) {
-        this.labName = labName;
-    }
+        public String getLabIntroduce() {
+            return labIntroduce;
+        }
 
-    public String getLabIntroduce() {
-        return labIntroduce;
-    }
+        public void setLabIntroduce(String labIntroduce) {
+            this.labIntroduce = labIntroduce;
+        }
 
-    public void setLabIntroduce(String labIntroduce) {
-        this.labIntroduce = labIntroduce;
-    }
+        public String getResult() {
+            return result;
+        }
 
-    public String getLabAddress() {
-        return labAddress;
-    }
+        public void setResult(String result) {
+            this.result = result;
+        }
 
-    public void setLabAddress(String labAddress) {
-        this.labAddress = labAddress;
-    }
+        public String getLabOpenTime() {
+            return labOpenTime;
+        }
 
-    public String getLabOpenTime() {
-        return labOpenTime;
-    }
+        public void setLabOpenTime(String labOpenTime) {
+            this.labOpenTime = labOpenTime;
+        }
 
-    public void setLabOpenTime(String labOpenTime) {
-        this.labOpenTime = labOpenTime;
-    }
+        public String getLabEquip() {
+            return labEquip;
+        }
 
-    public String getLabEquip() {
-        return labEquip;
-    }
+        public void setLabEquip(String labEquip) {
+            this.labEquip = labEquip;
+        }
 
-    public void setLabEquip(String labEquip) {
-        this.labEquip = labEquip;
-    }
+        public String getLabReserve() {
+            return labReserve;
+        }
 
-    public String getLabReserve() {
-        return labReserve;
-    }
+        public void setLabReserve(String labReserve) {
+            this.labReserve = labReserve;
+        }
 
-    public void setLabReserve(String labReserve) {
-        this.labReserve = labReserve;
+        public String getLabName() {
+            return labName;
+        }
+
+        public void setLabName(String labName) {
+            this.labName = labName;
+        }
+
+        public String getLabAddress() {
+            return labAddress;
+        }
+
+        public void setLabAddress(String labAddress) {
+            this.labAddress = labAddress;
+        }
     }
 }

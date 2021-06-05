@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:id="@+id/sr_tech_refresh">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_technician_reserve_check"
@@ -12,4 +12,4 @@
         android:paddingTop="7.5dp"
         android:paddingBottom="7.5dp"/>
 
-</LinearLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

@@ -1,6 +1,7 @@
 package com.example.zerolab.fragment.student;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,71 +9,92 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.example.module.mvp.MvpFragment;
+import com.example.zerolab.Contract.ResultContract;
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.ReserveResultAdapter;
 import com.example.zerolab.bean.ReserveResultBean;
+import com.example.zerolab.bean.ResultBean;
+import com.example.zerolab.bean.UserManage;
+import com.scwang.smartrefresh.header.WaveSwipeHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Response;
+
+import static android.widget.Toast.LENGTH_SHORT;
+
 /**
  * @author zero
  */
-public class ReserveResultFragment extends Fragment {
+public class ReserveResultFragment extends MvpFragment<ResultContract.ResultPresenter> implements ResultContract.IResultView {
     private RecyclerView resultRecycler;
-    private List<ReserveResultBean> resultBeanList = new ArrayList<>();
-    private final int btnCancel=R.id.btn_item_cancel;
+    private List<ReserveResultBean.Results.Result> resultBeanList = new ArrayList<>();
+    private ResultBean.Params resultBean;
+    private ReserveResultAdapter resultAdapter;
+    private SmartRefreshLayout refreshLayout;
+
+    @Override
+    protected ResultContract.ResultPresenter createPresent() {
+        return new ResultContract.ResultPresenter();
+    }
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        Log.d("TAG1", "initData: ----------------->ReserveResultFragment UserNum "+UserManage.getInstance().getUserNum());
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.module_fragment_student_result, container, false);
 
-        initView(view);
-        initData();
-        ReserveResultAdapter resultAdapter=new ReserveResultAdapter(R.layout.module_recycler_item_reserve_result,resultBeanList);
+        mPresent.getReserveResult(UserManage.getInstance().getUserNum());
+
+        resultRecycler = view.findViewById(R.id.rv_reserveResult_student);
+        resultAdapter=new ReserveResultAdapter(R.layout.module_recycler_item_reserve_result,resultBeanList);
         LinearLayoutManager layoutManager=new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         resultRecycler.setLayoutManager(layoutManager);
         resultRecycler.setAdapter(resultAdapter);
+        refreshLayout=view.findViewById(R.id.sr_refresh);
+        refreshLayout.setRefreshHeader(new WaveSwipeHeader(getContext()));
+        refreshLayout.setEnableLoadMore(false);
 
-        resultAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                //获取item对象
-                ReserveResultBean resultBean= (ReserveResultBean) adapter.getItem(position);
-                //TODO
-                switch (view.getId()){
-                    case btnCancel:
-                        Toast.makeText(getContext(),"取消预约",Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        Log.d("TAG1", "onCreateView: ---------------->ReserveResultFragment");
 
         return view;
     }
 
-    private void initData() {
-        ReserveResultBean result1=new ReserveResultBean("光学实验室","小孔成像","13:00","14:00","未通过","王老师");
-        resultBeanList.add(result1);
-        ReserveResultBean result2=new ReserveResultBean("化学实验室","制造氧气","14:30","16:30","已通过","王老师");
-        resultBeanList.add(result2);
-    }
-
-    private void initView(View view) {
-        resultRecycler = view.findViewById(R.id.rv_reserveResult_student);
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("TAG1", "onResume: ----------->ReserveResultFragment");
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                mPresent.getReserveResult(UserManage.getInstance().getUserNum());
+                refreshLayout.finishRefresh();
+            }
+        });
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void getReserveResult(Response<ReserveResultBean> response) {
+        resultBeanList.clear();
+        resultBeanList.addAll(response.body().getResult().getResults());
+        resultAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void getFailed() {
+        Toast.makeText(getContext(), "网络错误", LENGTH_SHORT).show();
     }
 }

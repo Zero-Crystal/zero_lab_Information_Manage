@@ -53,12 +53,13 @@
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/sp_lab_choose"
+                <EditText
+                    android:id="@+id/etLabName"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:spinnerMode="dropdown"
-                    android:dropDownVerticalOffset="43dp"/>
+                    android:layout_height="50dp"
+                    android:hint="请输入实验室名称"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="17dp"/>
 
             </LinearLayout>
 

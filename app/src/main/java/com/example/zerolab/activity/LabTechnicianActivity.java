@@ -10,10 +10,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.zerolab.R;
 import com.example.zerolab.adapter.TabAdapter;
-import com.example.zerolab.fragment.QueryFragment;
 import com.example.zerolab.fragment.technician.LabAddFragment;
 import com.example.zerolab.fragment.technician.ReserveCheckFragment;
 import com.example.zerolab.fragment.technician.TechnicianIndexFragment;
+import com.example.zerolab.fragment.technician.TechnicianQueryFragment;
 import com.example.zerolab.utils.Constant;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -60,7 +60,7 @@ public class LabTechnicianActivity extends AppCompatActivity {
         title.add("预约审核");
 
         fragmentList.add(new TechnicianIndexFragment());
-        fragmentList.add(new QueryFragment());
+        fragmentList.add(new TechnicianQueryFragment());
         fragmentList.add(new LabAddFragment());
         fragmentList.add(new ReserveCheckFragment());
         Log.d(Constant.TAG_D, "initDate: ----------------> fragmentList size "+fragmentList.size());

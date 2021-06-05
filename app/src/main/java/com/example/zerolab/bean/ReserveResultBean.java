@@ -1,75 +1,82 @@
 package com.example.zerolab.bean;
 
-import android.net.http.SslCertificate;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * @author zero
  */
 public class ReserveResultBean {
-    private String labName;
-    private String experimentName;
-    private String startTime;
-    private String endTime;
-    private String reserveResult;
-    private String reserveTeacher;
 
-    public ReserveResultBean() {
+    @SerializedName("Result")
+    private Results result;
+
+    public Results getResult() {
+        return result;
     }
 
-    public ReserveResultBean(String labName, String experimentName, String startTime, String endTime, String reserveResult, String reserveTeacher) {
-        this.labName = labName;
-        this.experimentName = experimentName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.reserveResult = reserveResult;
-        this.reserveTeacher = reserveTeacher;
+    public void setResult(Results result) {
+        this.result = result;
     }
 
-    public String getLabName() {
-        return labName;
-    }
+    public static class Results {
+        private List<Results.Result> results;
 
-    public void setLabName(String labName) {
-        this.labName = labName;
-    }
+        public List<Results.Result> getResults() {
+            return results;
+        }
 
-    public String getExperimentName() {
-        return experimentName;
-    }
+        public void setResults(List<Results.Result> results) {
+            this.results = results;
+        }
 
-    public void setExperimentName(String experimentName) {
-        this.experimentName = experimentName;
-    }
+        public static class Result {
+            private String labName;
+            private String experimentName;
+            private String experimentTime;
+            private String reserveStatus;
+            private String checkTeacher;
 
-    public String getStartTime() {
-        return startTime;
-    }
+            public String getLabName() {
+                return labName;
+            }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
+            public void setLabName(String labName) {
+                this.labName = labName;
+            }
 
-    public String getEndTime() {
-        return endTime;
-    }
+            public String getExperimentName() {
+                return experimentName;
+            }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
+            public void setExperimentName(String experimentName) {
+                this.experimentName = experimentName;
+            }
 
-    public String getReserveResult() {
-        return reserveResult;
-    }
+            public String getExperimentTime() {
+                return experimentTime;
+            }
 
-    public void setReserveResult(String reserveResult) {
-        this.reserveResult = reserveResult;
-    }
+            public void setExperimentTime(String experimentTime) {
+                this.experimentTime = experimentTime;
+            }
 
-    public String getReserveTeacher() {
-        return reserveTeacher;
-    }
+            public String getReserveStatus() {
+                return reserveStatus;
+            }
 
-    public void setReserveTeacher(String reserveTeacher) {
-        this.reserveTeacher = reserveTeacher;
+            public void setReserveStatus(String reserveStatus) {
+                this.reserveStatus = reserveStatus;
+            }
+
+            public String getCheckTeacher() {
+                return checkTeacher;
+            }
+
+            public void setCheckTeacher(String checkTeacher) {
+                this.checkTeacher = checkTeacher;
+            }
+        }
     }
 }

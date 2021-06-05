@@ -18,7 +18,7 @@ public class ServiceGenerator {
      *
      * 将上方的API接口地址进行拆分得到不变的一部分,实际开发中可以将这一部分作为服务器的ip访问地址
      */
-    public static String BASE_URL = "https://free-api.heweather.net";
+    public static String BASE_URL = "http://39.105.87.223:8080";
 
     /**
      * 创建服务  参数就是API服务

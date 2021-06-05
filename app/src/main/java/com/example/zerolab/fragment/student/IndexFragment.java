@@ -11,69 +11,87 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.module.mvp.MvpFragment;
-import com.example.zerolab.Contract.StudentIndexContract;
+import com.example.zerolab.Contract.LabInformationContract;
 import com.example.zerolab.R;
+import com.example.zerolab.activity.StudentActivity;
 import com.example.zerolab.adapter.LabInformationAdapter;
-import com.example.zerolab.bean.LabBean;
-import com.example.zerolab.utils.Constant;
+import com.example.zerolab.bean.LabInformationBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Response;
+
+import static android.widget.Toast.LENGTH_SHORT;
+
 /**
  * @author zero
  */
-public class IndexFragment extends MvpFragment<StudentIndexContract.StudentIndexPresenter> implements StudentIndexContract.IStudentIndex {
+public class IndexFragment extends MvpFragment<LabInformationContract.LabInformationPresenter> implements LabInformationContract.ILabInformationVew {
     private RecyclerView labRecycler;
-    private List<LabBean> labBeanList = new ArrayList<>();
+    private List<LabInformationBean.LabInformation.Labs> labBeanList = new ArrayList<>();
+    private LabInformationAdapter labAdapter;
+
+    @Override
+    protected LabInformationContract.LabInformationPresenter createPresent() {
+        return new LabInformationContract.LabInformationPresenter();
+    }
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(Constant.TAG_D, "onCreateView: ------------------> 已执行");
+        Log.d("TAG", "onCreateView: ------------------> 已执行");
         View view = inflater.inflate(R.layout.module_fragment_student_index, container, false);
 
+        mPresent.LabInformation();
+
         labRecycler = view.findViewById(R.id.rv_labInformation_student);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         labRecycler.setLayoutManager(layoutManager);
-        LabInformationAdapter labAdapter = new LabInformationAdapter(R.layout.module_recycler_item_lab, labBeanList);
+        labAdapter = new LabInformationAdapter(R.layout.module_recycler_item_lab, labBeanList);
         labRecycler.setAdapter(labAdapter);
-        //RecyclerView内部按钮点击事件：获取该item预约信息，并跳转预约页面
-        labAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                //Click Test
-                LabBean labBean = (LabBean) adapter.getItem(position);
-                Toast.makeText(view.getContext(), labBean.getLabName() + " 地址：" + labBean.getLabAddress() + " " + position, Toast.LENGTH_LONG).show();
-                //TODO
-            }
-        });
 
         return view;
     }
 
     @Override
-    protected StudentIndexContract.StudentIndexPresenter createPresent() {
-        return new StudentIndexContract.StudentIndexPresenter();
+    public void onResume() {
+        super.onResume();
+        //RecyclerView内部按钮点击事件：获取该item预约信息，并跳转预约页面
+        labAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                final StudentActivity studentActivity=(StudentActivity) getActivity();
+                studentActivity.setFragment(new StudentActivity.FragmentJump() {
+                    @Override
+                    public void goToFragment(ViewPager2 viewPager) {
+                        studentActivity.setLabInformationBean(labBeanList.get(position));
+                        viewPager.setCurrentItem(2);
+                    }
+                });
+                studentActivity.forSkip();
+            }
+        });
     }
 
     @Override
-    public void initData(Bundle savedInstanceState) {
-        initList();
+    public void getLabInformation(Response<LabInformationBean> labInformationBeanResponse) {
+        labBeanList.clear();
+        labBeanList.addAll(labInformationBeanResponse.body().getLabInformation().getLabs());
+        labAdapter.notifyDataSetChanged();
     }
 
-    private void initList() {
-        LabBean labBean1 = new LabBean("光学实验室", "这里是光学实验室", "基础楼303", "12:00-13:00", "光学显微镜、放大器", "已预约");
-        labBeanList.add(labBean1);
-        LabBean labBean2 = new LabBean("化学实验室", "这里是化学实验室", "基础楼304", "14:00-18:00", "烧杯、量筒", "未预约");
-        labBeanList.add(labBean2);
-        LabBean labBean3 = new LabBean("物理实验室", "这里是物理实验室", "基础楼203", "10:00-14:00", "天平、砝码", "未预约");
-        labBeanList.add(labBean3);
-        Log.d(Constant.TAG_D, "initList: ------------------> list size " + labBeanList.size());
+    @Override
+    public void Failed() {
+        Toast.makeText(getContext(), "网络错误", LENGTH_SHORT).show();
     }
-
 }
